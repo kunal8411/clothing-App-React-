@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 import {auth} from '../../firebase/firebase.utils'
 import './header.styles.scss';
 
@@ -26,4 +27,11 @@ const Header= ({currentUser})=>(
     </div>
 )
 
-export default Header;
+
+//state is high order state-->root Reducer 
+const mapStateToProps = state => ({
+    //state is root reducer inside root-reducer we will find user key and associated cueeUser from that key
+    currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
