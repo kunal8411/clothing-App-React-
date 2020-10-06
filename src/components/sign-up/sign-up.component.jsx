@@ -21,14 +21,14 @@ class SignUp extends React.Component{
         const {displayName, email, password, confirmPassword}= this.state;
 
         if(password!==confirmPassword){
-            alert('please enter same password');
+            alert('password not matching');
             return;
         }
         
         try{
             //create user in firebase authentication
             const {user} = await auth.createUserWithEmailAndPassword(email,password);
-
+            
             //create user in out firebase database
            await createUserProfileDocument(user,{displayName});
 
@@ -46,8 +46,16 @@ class SignUp extends React.Component{
         }
     }
     handleChange=(event)=>{
+        //event.target will give us whol form object like,
+        //<input class="form-input" type="text" name="displayName" required="" value="aaa">
         const {name, value}= event.target;
+        
+
+        //take name property and set the value to that property like, 
+        //value is whatever we are typing in the input box
+        //email:Kunal@gmail.com
         this.setState({[name]:value} )
+        
 
     }
    render(){

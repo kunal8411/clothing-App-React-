@@ -7,6 +7,7 @@ import SignInAndSignOut from './pages/sign-in-and-sign-up/sign-in-and-sign-up.co
 import Header from '../src/components/header/header.component'
 import { auth,createUserProfileDocument } from './firebase/firebase.utils';
 
+
 class App extends React.Component {
   constructor() {
     super();
@@ -31,7 +32,7 @@ class App extends React.Component {
             ...snapshot.data()
           }
         });
-        console.log(this.state)
+        // console.log(this.state)
       })
 
      }else{
