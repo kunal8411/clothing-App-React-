@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import HomePage  from './pages/homepage/homepage.component';
-import { Route}  from 'react-router-dom';
+import { Switch, Route, Redirect}  from 'react-router-dom';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignOut from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 import Header from '../src/components/header/header.component'
@@ -21,7 +21,7 @@ class App extends React.Component {
     //and store the data into database from firebase auth
     this.unSubscribeFromAuth= auth.onAuthStateChanged( async userAuth=>{
 
-      //if this user is present do this(confused in this statement)
+      //if user value is not null
      if(userAuth){
       //this will give us user reference
       const userRef= await createUserProfileDocument(userAuth);
@@ -54,15 +54,21 @@ class App extends React.Component {
     return (
     <div >
       <Header/>
-      <switch>
+      <Switch>
         <Route exact path='/' component={HomePage}/>
         <Route exact path='/shop' component={ShopPage}/>
-        <Route exact path='/signin' component={SignInAndSignOut}/>
-      </switch>
+        <Route exact path='/signin' render={()=>this.props.currentUser ?(<Redirect to='/'/>): (<SignInAndSignOut/>)}/>
+      </Switch>
     </div>
   );
 }
 }
+
+//we want current user so we take out currentUser from state as a props
+const mapStateToProps =({user})=>({
+  currentUser:user.currentUser
+})
+
 
 const mapDispatchToProps=(dispatch)=>({
   
@@ -70,5 +76,6 @@ const mapDispatchToProps=(dispatch)=>({
 })
 
 
+
 //null because we dont want to pass mapStateToProps() method as we are just passing props from state here 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

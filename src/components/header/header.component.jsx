@@ -29,6 +29,7 @@ const Header= ({currentUser})=>(
 
 
 //state is high order state-->root Reducer 
+//taking value from state and passing as a prop to header componenent
 const mapStateToProps = state => ({
     //state is root reducer inside root-reducer we will find user key and associated cueeUser from that key
     currentUser: state.user.currentUser
