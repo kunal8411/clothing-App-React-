@@ -6,6 +6,9 @@ import './header.styles.scss';
 import CartIcon from '../cart-icon/cart-icon.component'
 import {ReactComponent as Logo} from '../../assets/crown.svg';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
+import {createStructuredSelector} from 'reselect';
+import {selectCartHidden} from '../../redux/cart/cart.selectors';
+import {selectCurrentUser} from '../../redux/user/user.selector'
 const Header= ({currentUser,hidden})=>(
     <div className="header">
         <Link className='logo-container' to="">
@@ -35,11 +38,19 @@ const Header= ({currentUser,hidden})=>(
 
 //state is high order state-->root Reducer 
 //taking value from state and passing as a prop to header componenent
-const mapStateToProps = state => ({
+//see below description for createStructuredSelector
+const mapStateToProps = createStructuredSelector ({
     //state is root reducer inside root-reducer we will find user key and associated currUser from that key
-    currentUser: state.user.currentUser,
-    hidden:state.cart.hidden
+    currentUser: selectCurrentUser,
+    hidden:selectCartHidden
 });
+
+//this is same like above but to reduce the code, we have written createStructuredSelector
+//this will take out the higher order props
+// const mapStateToProps = state => ({
+//     currentUser: selectCurrentUser(state),
+//     hidden:selectCartHidden(state)
+// });
 
 
 export default connect(mapStateToProps)(Header);
