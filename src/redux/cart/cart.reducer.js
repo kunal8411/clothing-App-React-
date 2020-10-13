@@ -23,7 +23,12 @@ const cartReducer=(state=INITIAL_STATE, action)=>{
                 //here we are adding all previous values in array so we have used
                 //...state.cartItems to spread all the values in previous array
                 cartItems:addItemsToCart(state.cartItems, action.payload)
-            }    
+            } 
+        case cartActionTypes.CLEAR_ITEM_FROM_CART:
+            return{
+                ...state,
+                cartItems:state.cartItems.filter(cartItem=>cartItem.id!==action.payload.id)
+            }       
         default:
             return state;
 
