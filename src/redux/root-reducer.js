@@ -5,6 +5,7 @@ import {persistReducer} from 'redux-persist';
 import userReducer from './user/user.reducer';
 import  cartReducer from './cart/cart.reducer';
 import direcoryReducer from './directory/directory.reducer'
+import shopReducer from './shop/shop.reducer'
 import storage from 'redux-persist/lib/storage'
 
 const persistConfig = {
@@ -17,7 +18,9 @@ const rootReducer =combineReducers({
     user:userReducer,
     cart:cartReducer,
     //this directory contains all the information which we are rendering on home page
-    directory:direcoryReducer  
+    directory:direcoryReducer  ,
+    shop:shopReducer
+
 })
 
 
