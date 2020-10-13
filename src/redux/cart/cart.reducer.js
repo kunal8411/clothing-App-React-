@@ -1,7 +1,8 @@
 
+// import { forwardRef } from 'react'
 import cartActionTypes from './cart.types'
 
-import {addItemsToCart} from './cart.utils'
+import {addItemsToCart, removeItemFromCart} from './cart.utils'
 
 //we want to hide our cart dropdown when we first comes to our website thast why hidden by default true
 const INITIAL_STATE={
@@ -27,8 +28,13 @@ const cartReducer=(state=INITIAL_STATE, action)=>{
         case cartActionTypes.CLEAR_ITEM_FROM_CART:
             return{
                 ...state,
-                cartItems:state.cartItems.filter(cartItem=>cartItem.id!==action.payload.id)
-            }       
+                cartItems:state.cartItems.filter(cartItem=>cartItem.id !== action.payload.id)
+            } 
+        case cartActionTypes.REMOVE_ITEM:
+            return{
+                ...state,
+                cartItems:removeItemFromCart(state.cartItems, action.payload)
+            }          
         default:
             return state;
 

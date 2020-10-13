@@ -82,3 +82,4 @@ const mapDispatchToProps=(dispatch)=>({
 
 //null because we dont want to pass mapStateToProps() method as we are just passing props from state here 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
+  
