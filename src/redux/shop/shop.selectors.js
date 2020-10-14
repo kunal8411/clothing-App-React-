@@ -10,13 +10,7 @@ export const selectCollections = createSelector(
     shop => shop.collections
 ) ;  
 
-//see the difference here and above method , name with 's and without 's
-// export const selectCollection = collectionURLParam =>
-//     createSelector( 
-//         [selectCollections],
-//         collections =>collections[collectionURLParam]
-        
-// )
+
 
 export const selectCollection = collectionUrlParam =>
   createSelector([selectCollections], collections => {
