@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-//all map to state props functions values are put here in function 
+
 
 const selectCart = state => state.cart;
 

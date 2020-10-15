@@ -9,8 +9,7 @@ import {selectCartItems} from '../../redux/cart/cart.selectors';
 import {togglCartHidden} from '../../redux/cart/cart.actions'
 
 
-//dispatch-->if we not pass second argument in connect then also we will get access to dispatch,
-//so without writing mapStateToDispatch method we can pass use dispatch
+
 const CartDropdown =({cartItems, history, dispatch})=>(
     <div className='cart-dropdown'>
         <div className='cart-items'>

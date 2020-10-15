@@ -13,8 +13,7 @@ const config={
     appId: "1:668809672829:web:f91353d430fc43f64f5914",
     measurementId: "G-3LV8CZ4VHC"
 }
-//userAuth is a object that we will take us from authentication
-//this method saves the data ainto our firebase database
+
 export const createUserProfileDocument= async (userAuth, additionalData)=>{
     if (!userAuth) return;
 

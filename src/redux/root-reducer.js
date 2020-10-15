@@ -1,4 +1,4 @@
-//actual base reducer object contains whole state
+
 
 import  {combineReducers} from 'redux';
 import {persistReducer} from 'redux-persist';
@@ -17,7 +17,7 @@ const persistConfig = {
 const rootReducer =combineReducers({
     user:userReducer,
     cart:cartReducer,
-    //this directory contains all the information which we are rendering on home page
+    
     directory:direcoryReducer  ,
     shop:shopReducer
 

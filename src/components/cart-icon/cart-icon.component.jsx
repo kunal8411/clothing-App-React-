@@ -12,8 +12,7 @@ const CartIcon =({togglCartHidden, itemCount})=>(
     </div>
 )
 
-//when to trigger the event, for that we are using this method
-//on click of this cart symbol in header we want to trigger the event so we are using this method here
+
 const mapDispatchToProps = dispatch=>({
     togglCartHidden : () => dispatch(togglCartHidden())
 })
