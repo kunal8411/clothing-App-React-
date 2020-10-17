@@ -22,7 +22,7 @@ class App extends React.Component {
     
     this.unSubscribeFromAuth= auth.onAuthStateChanged( async userAuth=>{
 
-      
+      //if user have enter some info then only create the firestore
      if(userAuth){
       
       const userRef= await createUserProfileDocument(userAuth);
@@ -41,7 +41,7 @@ class App extends React.Component {
        
        setCurrentUser(userAuth);
      }
-      
+     
       
 
     })
@@ -68,7 +68,8 @@ class App extends React.Component {
 
 
 const mapStateToProps =createStructuredSelector({
-  currentUser:selectCurrentUser
+  currentUser:selectCurrentUser,
+  
 })
 
 
