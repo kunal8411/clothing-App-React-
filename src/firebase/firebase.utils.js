@@ -77,8 +77,15 @@ export const convertCollectionsSnapshotToMap = (collections)=>{
       
     }
   });
-  console.log("transformed collection", transformedCollection)
-}
+
+  //transformedCollection contains all the shop data, but before passing that data we want to shape the
+  //data in such a way that, title will be key and all other values are value for key-value pair
+  //for that we are using reduce method and will return the accurate data using reduce().  
+  return transformedCollection.reduce((accumulator, collection)=>{
+    accumulator[collection.title.toLowerCase()]= collection;
+    return accumulator
+  },{});
+};
 
 firebase.initializeApp(config);
 
