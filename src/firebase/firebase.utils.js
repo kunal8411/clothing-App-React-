@@ -57,11 +57,28 @@ export const addCollectionDocuments =async (collectionKey, objectsToAdd)=>{
 
   //this will return promise so convert it into async-await
  return await batch.commit();
-
-
-  
+ 
 }
 
+//to pull the collection data from firestore
+//all documents that we render on shop page, converts array into objects 
+//call this method in shop.component.jsx, collection will contain all documents(i.e. collection snapshot object)
+export const convertCollectionsSnapshotToMap = (collections)=>{
+  //collection.docs() will give us array containing all documents
+  const transformedCollection = collections.docs.map(doc=>{
+    //that doc is document snapshot object 
+    const {title,items} = doc.data();
+    return {
+      
+      routeName:encodeURI(title.toLowerCase()),
+      id:doc.id,
+      title, 
+      items
+      
+    }
+  });
+  console.log("transformed collection", transformedCollection)
+}
 
 firebase.initializeApp(config);
 
