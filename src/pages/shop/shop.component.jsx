@@ -8,6 +8,9 @@ import {connect} from 'react-redux'
 
 
 class ShopPage extends React.Component{
+
+    
+
     unsubscribeFromSnapshot = null ; 
     componentDidMount(){
 
@@ -17,13 +20,23 @@ class ShopPage extends React.Component{
         const collectionRef = firestore.collection('collections')
         //whenever code gets update or code gets run for first time, this snapshot will send us
         //array with all collection snapshot object's
-        collectionRef.onSnapshot(async snapshot => {
+
+        // collectionRef.onSnapshot(async snapshot => {
+
+            //this function will convert array into object, and pass the data from firetore to our app
+            // const collectionMap =convertCollectionsSnapshotToMap(snapshot)
+            //collectionmap gets an array with key as title and value as other items like id,items
+            // updateCollections(collectionMap)
+        // });
+        //we use promises here because we dont want to user observer-subscriber pattern here
+        //thay will always interact with live database 
+        collectionRef.get().then(snapshot => {
 
             //this function will convert array into object, and pass the data from firetore to our app
             const collectionMap =convertCollectionsSnapshotToMap(snapshot)
             //collectionmap gets an array with key as title and value as other items like id,items
             updateCollections(collectionMap)
-        });
+        })
 
 
     }
